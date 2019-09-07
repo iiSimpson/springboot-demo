@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/globle.css}"/>
+    <script th:src="@{/js/hello.js}" type="text/javascript"></script>
+</head>
+<!--常用的th标签
+    1.th:text  ====> 取文本值
+    2.th:each  ====> 遍历
+    3.th:src ===>图片、js文件
+    4.th:href  ===>css外部样式、a标签
+    5.th:fragment  ===> 声明一个标签片段
+    6.th:insert / th:replace
+       注意：th:insert 会在引入的标签内插入被引入的标签
+       th:replace：同样的标签会替换，只会有一个大标签
+    7.th:if ---判断，详细可以
+-->
+<body>
+<h1 th:text="${msg}">我是thymeleaf</h1>
+<hr>
+<table border="1px red solid" cellspacing="0" cellpadding="0">
+    <tr th:each="user : ${users}">
+        <td th:text="${user.id}">id</td>
+        <td th:text="${user.name}">姓名</td>
+        <td th:text="${user.score}">分数</td>
+    </tr>
+</table>
+
+<span th:text="${session.user.name}"></span>
+<input th:value="${session.user.name}"><br/>
+
+<img th:src="@{/img/marvel.jpg}" height="200">
+
+<!--<div th:replace="common/footer :: myfooter"></div>-->
+
+<div th:insert="common/footer :: myfooter"></div>
+
+<span th:if="${session.user.score} > 0">你真棒</span>
+</body>
+</html>
